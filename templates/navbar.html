@@ -1,0 +1,24 @@
+<header>
+    {% load static %}
+    <nav style="display: flex;align-items: center;padding: 20px;column-gap: 20px">
+
+        <h1>ART STORE!!!!</h1>
+        <a href="{% url 'index' %}">HOME</a>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'order_list' %}">ORDERS</a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+            </form>
+
+        {% else %}
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">login</button>
+            </form>
+        {% endif %}
+    </nav>
+    <h3>Welcome {{ user }}</h3>
+</header>

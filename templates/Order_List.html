@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+{% include 'navbar.html' %}
+
+<h2>Orders:</h2>
+<h3>USER: {{ user.username }}</h3>
+
+<ul>
+
+    {% for order in orders %}
+
+        <li>
+            <h1>{{ order.item.name }}</h1>
+            <h2>Ordered: {{ order.date }}</h2>
+            <a href="{% url 'details' order.item.id %}">Order again?</a>
+            <br>
+            <a href="{% url 'delete_order' order.id %}">Cancel Order?</a>
+        </li>
+
+    {% endfor %}
+
+</ul>
+
+</body>
+<footer>
+    <h2>Footer</h2>
+</footer>

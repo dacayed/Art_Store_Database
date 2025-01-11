@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Store</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+{% include 'navbar.html' %}
+
+<ul class="home_page_products">
+    {% for Product in products %}
+        <li>
+            <img
+            class="Product_Image"
+            src="{{ Product.image.url }}"
+            alt="{{ Product.name }}"
+             />
+            {{ Product.name }} ${{ Product.price }} <br>
+            Amount left: {{ Product.stock }}
+            <a href="{{ Product.id }}/">View Product</a>
+        </li>
+        <br>
+    {% endfor %}
+</ul>
+</body>
+<footer>
+    <h2>Footer</h2>
+</footer>

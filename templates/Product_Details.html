@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <img
+            class="Product_Image"
+            src="{{ product.image.url }}"
+            alt="{{ product.name }}"
+    />
+    <h2>{{ product.name }}</h2>
+    <h3>{{ product.price }}$</h3>
+
+    <form action="add_order/" method="post">
+        {% csrf_token %}
+        <button type="submit">Order Now!</button>
+    </form>
+    <h3>Only {{ product.stock }} left!</h3>
+
+    <hr>
+
+<h2>ADD REVIEW:</h2>
+<form action="add_review/" method="post" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <label for="rating_id">rating (out of ten)</label><br>
+    <input type="number" id="rating_id" name="rating" required=""><br>
+
+    <label for="comment_id">Comments</label><br>
+    <input type="text" id="comment_id" name="review_text" required=""><br>
+    <button type="submit">Add Review</button>
+</form>
+
+    <script>
+        function validateForm(){
+            const rating = document.getElementById('rating_id').value
+            const commentField = document.getElementById('comment_id')
+            const commentValue = commentField.value;
+            const pattern = /^[a-zA-Z0-9\s!,.]*$/;
+            if(!pattern.test(commentValue)){
+                alert("please enter valid comment and/or review value")
+                return false;
+            }
+            else if (rating < 0 || rating > 10){
+                alert("please enter valid comment and/or review value")
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <hr>
+<h2>Reviews:</h2>
+{% for reviews in product.review_set.all %}
+        <li>
+            <h3>Rating: {{ reviews.rating }}/10</h3>
+            <h3>Comments: {{ reviews.review_text }}</h3>
+            <h3>Date: {{ reviews.date }} User: {{ reviews.User }}</h3>
+        </li>
+        <hr>
+{% endfor %}
+</body>
+</html>
