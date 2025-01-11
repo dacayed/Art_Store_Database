@@ -6,7 +6,7 @@ README TO CLONE AND OPEN DJANGO PROJECT
 
 - Create a folder to clone the repository into.
 - cd into that file in a terminal.
-- clone the repository with this command: "git clone https://github.com/Carleton-BIT/project-dacayed"
+- clone the repository with this command: "git clone https://github.com/dacayed/Art_Store_Database"
 - open PyCharm, Open the project folder where the repository was cloned
 - Open PyCharm Terminal, run "pip install -r requirements.txt"
 - install pillow: "pip install Pillow"
