@@ -20,7 +20,7 @@ README TO CLONE AND OPEN DJANGO PROJECT
 - type admin into url: http://127.0.0.1:8000/admin
 - log into superuser account
 - add desired art products through the admin view
-
+- 
    WEBSITE FEATURES
 - add users by registering
 - log in and log out of website
